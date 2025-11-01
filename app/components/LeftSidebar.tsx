@@ -44,7 +44,11 @@ export default function LeftSidebar({
         <div className={`h-16 border-b border-zinc-200 flex items-center transition-all duration-300 ${
           isExpanded ? 'px-4 justify-start' : 'px-0 justify-center'
         }`}>
-          <FileText className="w-6 h-6 text-zinc-900 shrink-0" />
+          <div className={`flex items-center justify-center rounded-lg transition-all ${
+            isExpanded ? 'bg-transparent' : 'bg-zinc-100 w-10 h-10'
+          }`}>
+            <FileText className="w-5 h-5 text-zinc-900 shrink-0" />
+          </div>
           <div
             className={`ml-3 transition-all duration-300 ${
               isExpanded ? 'opacity-100 w-auto' : 'opacity-0 w-0'
@@ -78,16 +82,20 @@ export default function LeftSidebar({
               documents.map((doc) => (
                 <div
                   key={doc.id}
-                  className={`group relative flex items-center rounded-lg hover:bg-zinc-50 transition-colors cursor-pointer ${
+                  className={`group relative flex items-center transition-colors cursor-pointer ${
                     isExpanded 
-                      ? 'gap-3 px-2 py-2 mx-2' 
-                      : 'justify-center py-2 mx-1'
+                      ? 'gap-3 px-2 py-2 mx-2 rounded-lg hover:bg-zinc-50' 
+                      : 'justify-center py-2 mx-auto'
                   }`}
                   onClick={() => onDocumentSelect(doc.id)}
                   title={isExpanded ? '' : doc.name}
                 >
                   {/* Icon */}
-                  <FileText className="w-5 h-5 text-zinc-600 shrink-0" />
+                  <div className={`flex items-center justify-center transition-all ${
+                    isExpanded ? '' : 'w-10 h-10 rounded-lg bg-zinc-100 hover:bg-zinc-200'
+                  }`}>
+                    <FileText className="w-5 h-5 text-zinc-600 shrink-0" />
+                  </div>
 
                   {/* Document Info */}
                   <div
@@ -144,7 +152,9 @@ export default function LeftSidebar({
               isExpanded ? 'gap-3' : 'justify-center'
             }`}
           >
-            <div className="w-8 h-8 bg-zinc-900 rounded-full flex items-center justify-center shrink-0">
+            <div className={`bg-zinc-900 rounded-full flex items-center justify-center shrink-0 ${
+              isExpanded ? 'w-8 h-8' : 'w-10 h-10'
+            }`}>
               <span className="text-white text-sm font-semibold">
                 {currentUser.name.charAt(0).toUpperCase()}
               </span>
@@ -162,11 +172,13 @@ export default function LeftSidebar({
           </div>
 
           {/* Action Buttons */}
-          <div className="space-y-1">
+          <div className={`space-y-2 ${isExpanded ? '' : 'flex flex-col items-center'}`}>
             <button
               onClick={onSettings}
-              className={`w-full flex items-center rounded-lg hover:bg-zinc-100 transition-colors ${
-                isExpanded ? 'gap-3 px-2 py-2' : 'justify-center py-2'
+              className={`flex items-center transition-colors ${
+                isExpanded 
+                  ? 'w-full gap-3 px-2 py-2 rounded-lg hover:bg-zinc-100' 
+                  : 'w-10 h-10 justify-center rounded-lg bg-zinc-100 hover:bg-zinc-200'
               }`}
               title="Settings"
             >
@@ -180,8 +192,10 @@ export default function LeftSidebar({
 
             <button
               onClick={onLogout}
-              className={`w-full flex items-center rounded-lg hover:bg-red-50 transition-colors ${
-                isExpanded ? 'gap-3 px-2 py-2' : 'justify-center py-2'
+              className={`flex items-center transition-colors ${
+                isExpanded 
+                  ? 'w-full gap-3 px-2 py-2 rounded-lg hover:bg-red-50' 
+                  : 'w-10 h-10 justify-center rounded-lg bg-red-50 hover:bg-red-100'
               }`}
               title="Logout"
             >
