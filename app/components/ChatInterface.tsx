@@ -45,7 +45,10 @@ export default function ChatInterface({ jobId, isOpen, onClose }: ChatInterfaceP
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!input.trim() || !jobId || isLoading) return;
+    if (!input.trim() || !jobId || isLoading) {
+      console.log('Submit blocked:', { input: input.trim(), jobId, isLoading });
+      return;
+    }
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -59,6 +62,7 @@ export default function ChatInterface({ jobId, isOpen, onClose }: ChatInterfaceP
     setIsLoading(true);
 
     try {
+      console.log('Sending chat request for jobId:', jobId);
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -69,11 +73,16 @@ export default function ChatInterface({ jobId, isOpen, onClose }: ChatInterfaceP
         }),
       });
 
+      console.log('Chat response status:', response.status);
+
       if (!response.ok) {
-        throw new Error('Failed to get response');
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Chat API error:', errorData);
+        throw new Error(errorData.error || 'Failed to get response');
       }
 
       const data = await response.json();
+      console.log('Chat response:', data);
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -88,7 +97,7 @@ export default function ChatInterface({ jobId, isOpen, onClose }: ChatInterfaceP
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.',
+        content: `Sorry, I encountered an error: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`,
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -105,7 +114,10 @@ export default function ChatInterface({ jobId, isOpen, onClose }: ChatInterfaceP
       <div className="px-4 py-3 border-b border-zinc-200 flex items-center justify-between bg-zinc-50 rounded-t-xl">
         <div className="flex items-center gap-2">
           <MessageSquare className="w-5 h-5 text-zinc-700" />
-          <h3 className="font-semibold text-zinc-900">Ask Questions</h3>
+          <div>
+            <h3 className="font-semibold text-zinc-900">Ask Questions</h3>
+            {jobId && <p className="text-xs text-zinc-500">Job: {jobId.substring(0, 8)}...</p>}
+          </div>
         </div>
         <button
           onClick={onClose}
