@@ -103,11 +103,15 @@ Answer:`;
     console.log('[Chat API] Got answer:', answer.substring(0, 100));
 
     // Store chat in database (optional - for history)
-    await supabase.from('chat_history').insert({
-      job_id: jobId,
-      question,
-      answer,
-    }).catch(err => console.log('[Chat API] Note: chat_history table may not exist yet:', err.message));
+    try {
+      await supabase.from('chat_history').insert({
+        job_id: jobId,
+        question,
+        answer,
+      });
+    } catch (err) {
+      console.log('[Chat API] Note: chat_history table may not exist yet:', err);
+    }
 
     console.log('[Chat API] Returning success response');
     return NextResponse.json({ answer });
