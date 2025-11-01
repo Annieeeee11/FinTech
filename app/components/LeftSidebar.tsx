@@ -33,17 +33,13 @@ export default function LeftSidebar({
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <>
-      {/* Sidebar Container */}
-      <div
-        className={`fixed left-0 top-0 h-screen bg-white transition-all duration-300 ease-in-out z-40 ${
-          isExpanded 
-            ? 'w-64 border-r border-zinc-200 shadow-xl' 
-            : 'w-16 border-r border-zinc-200'
-        }`}
-        onMouseEnter={() => setIsExpanded(true)}
-        onMouseLeave={() => setIsExpanded(false)}
-      >
+    <div
+      className={`h-screen bg-white border-r border-zinc-200 transition-all duration-300 ease-in-out shrink-0 ${
+        isExpanded ? 'w-64' : 'w-16'
+      }`}
+      onMouseEnter={() => setIsExpanded(true)}
+      onMouseLeave={() => setIsExpanded(false)}
+    >
         {/* Logo Section */}
         <div className={`h-16 border-b border-zinc-200 flex items-center transition-all duration-300 ${
           isExpanded ? 'px-4 justify-start' : 'px-0 justify-center'
@@ -198,11 +194,7 @@ export default function LeftSidebar({
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Spacer to prevent content overlap */}
-      <div className="w-16" />
-    </>
+    </div>
   );
 }
 
