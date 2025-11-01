@@ -13,7 +13,9 @@ import JobStatus from '../components/JobStatus';
 import ResultsTable from '../components/ResultsTable';
 import SynonymsPanel from '../components/SynonymsPanel';
 import EvidenceDrawer from '../components/EvidenceDrawer';
+import ChatInterface from '../components/ChatInterface';
 import { getJobStatus, exportCSV } from '@/lib/api';
+import { MessageSquare } from 'lucide-react';
 
 export default function Dashboard() {
   const [selectedEvidence, setSelectedEvidence] = useState<any>(null);
@@ -26,6 +28,7 @@ export default function Dashboard() {
   const [statusMessage, setStatusMessage] = useState<string | undefined>();
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const router = useRouter();
   const supabase = createClient();
 
@@ -285,6 +288,24 @@ export default function Dashboard() {
           </div>
         </div>
       </Modal>
+
+      {/* Floating Chat Button */}
+      {!isChatOpen && (
+        <button
+          onClick={() => setIsChatOpen(true)}
+          className="fixed bottom-6 right-6 w-14 h-14 bg-zinc-900 text-white rounded-full shadow-lg hover:bg-zinc-800 transition-all hover:scale-110 flex items-center justify-center z-40"
+          title="Ask Questions"
+        >
+          <MessageSquare className="w-6 h-6" />
+        </button>
+      )}
+
+      {/* Chat Interface */}
+      <ChatInterface
+        jobId={currentJobId}
+        isOpen={isChatOpen}
+        onClose={() => setIsChatOpen(false)}
+      />
     </div>
   );
 }
