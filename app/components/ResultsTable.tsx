@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Search, FileText, ExternalLink, Loader2 } from 'lucide-react';
 import { getResults, ResultRow } from '@/lib/api';
+import { usePathwayStream } from '@/lib/hooks/usePathwayStream';
 
 interface ResultsTableProps {
   jobId: string | null;
@@ -15,25 +16,21 @@ export default function ResultsTable({ jobId, onRowClick }: ResultsTableProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch results when jobId changes
+  // Use Pathway stream for real-time updates
+  const { results: pathwayResults, error: pathwayError } = usePathwayStream(jobId);
+
+  // Fetch initial results and use Pathway stream for updates
   useEffect(() => {
     if (!jobId) {
       setData([]);
       return;
     }
 
-    const fetchResults = async () => {
+    const fetchInitialResults = async () => {
       setIsLoading(true);
       setError(null);
       try {
-        console.log(`[ResultsTable] Fetching results for jobId: ${jobId}`);
         const results = await getResults(jobId);
-        console.log(`[ResultsTable] Received ${results.length} results`);
-        if (results.length === 0) {
-          console.warn(`[ResultsTable] ⚠️ No results received for jobId ${jobId}`);
-        } else {
-          console.log(`[ResultsTable] Sample results:`, results.slice(0, 3));
-        }
         setData(results);
       } catch (err) {
         setError('Failed to load results');
@@ -43,14 +40,25 @@ export default function ResultsTable({ jobId, onRowClick }: ResultsTableProps) {
       }
     };
 
-    fetchResults();
+    fetchInitialResults();
   }, [jobId]);
+
+  // Update with Pathway stream results
+  useEffect(() => {
+    if (pathwayResults && pathwayResults.length > 0) {
+      setData(pathwayResults);
+      setIsLoading(false);
+    }
+    if (pathwayError) {
+      setError(pathwayError);
+    }
+  }, [pathwayResults, pathwayError]);
 
   const filteredData = data.filter(
     row =>
-      row.originalTerm.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      row.canonical.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      row.docName.toLowerCase().includes(searchQuery.toLowerCase())
+      (row.originalTerm || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (row.canonical || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (row.docName || '').toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
