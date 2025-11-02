@@ -24,6 +24,7 @@ export default function JobStatus({
       color: 'text-zinc-500',
       bg: 'bg-zinc-100',
       description: 'Upload documents to begin processing',
+      animate: false,
     },
     processing: {
       icon: Loader2,
@@ -39,6 +40,7 @@ export default function JobStatus({
       color: 'text-green-600',
       bg: 'bg-green-50',
       description: 'Documents processed successfully',
+      animate: false,
     },
     error: {
       icon: XCircle,
@@ -46,6 +48,7 @@ export default function JobStatus({
       color: 'text-red-600',
       bg: 'bg-red-50',
       description: message || 'An error occurred during processing',
+      animate: false,
     },
   };
 
