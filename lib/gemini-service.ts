@@ -85,38 +85,42 @@ CRITICAL REQUIREMENTS:
 6. Extract the EXACT term name as written (case-sensitive: "Subtotal", "Discount", "Tax", etc.)
 7. For values: 
    - Remove currency symbols ($, Rs., etc.) and commas
-   - PRESERVE negative signs for discounts (e.g., "-500.00")
+   - PRESERVE negative signs for discounts (e.g., "-500")
    - For percentages, extract the dollar amount if shown, or convert percentage to amount if needed
-   - Extract only numeric values with decimals (e.g., "5250.00", "-500.00", "225.00")
+   - Extract numbers EXACTLY as written - DO NOT add extra zeros or decimal places
+   - If a number is "100", extract "100" NOT "100.00" or "10000"
+   - If a number is "100.50", extract "100.50" (preserve the decimal as written)
+   - Preserve decimals only if they appear in the source image
 8. For each term, capture surrounding context (evidence) showing where it appears
 9. Page number defaults to 1 if single page
 10. Confidence score (0-100) based on clarity
 
 SPECIAL INSTRUCTIONS FOR KEY FIELDS:
 - "Subtotal": Look for amounts labeled as "Subtotal", "Sub Total", "Sub-total" before discounts
-- "Discount": Look for discount amounts (may be negative like "-$500.00" or percentage like "10%"). Extract the dollar amount value.
+- "Discount": Look for discount amounts (may be negative like "-$500" or percentage like "10%"). Extract the dollar amount value.
 - "Tax": Extract tax amounts (may be percentage + amount)
 
 EXAMPLES:
-If you see "Subtotal: $5,250.00", extract: {"term": "Subtotal", "value": "5250.00"}
-If you see "Discount: 10.00% -$500.00", extract: {"term": "Discount", "value": "-500.00"}
+If you see "Subtotal: $5,250", extract: {"term": "Subtotal", "value": "5250"} (not "5250.00")
+If you see "Subtotal: $5,250.00", extract: {"term": "Subtotal", "value": "5250.00"} (preserve decimals if present)
+If you see "Discount: 10% -$500", extract: {"term": "Discount", "value": "-500"}
 If you see "Discount: -$500.00", extract: {"term": "Discount", "value": "-500.00"}
-If you see "Tax: 5.00% $225.00", extract: {"term": "Tax", "value": "225.00"}
+If you see "Tax: 5% $225", extract: {"term": "Tax", "value": "225"}
 
 Return a JSON array with this EXACT structure:
 [
   {
     "page": 1,
     "term": "Subtotal",
-    "value": "5250.00",
-    "evidence": "Subtotal: $5,250.00 written on invoice",
+    "value": "5250",
+    "evidence": "Subtotal: $5,250 written on invoice",
     "confidence": 95
   },
   {
     "page": 1,
     "term": "Discount",
-    "value": "-500.00",
-    "evidence": "Discount: 10.00% -$500.00 written on invoice",
+    "value": "-500",
+    "evidence": "Discount: 10% -$500 written on invoice",
     "confidence": 95
   }
 ]

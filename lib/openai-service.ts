@@ -348,13 +348,16 @@ STEP-BY-STEP PROCESS:
    - For "Tax": Extract the dollar amount value. If only percentage is shown, note it in evidence but extract the calculated amount
    - Preserve exact term spelling as written (handwritten may have variations)
    - Remove currency symbols ($, Rs., €, etc.) and commas from values
-   - Keep decimal places (always use 2 decimal places: "5250.00", not "5250")
+   - Extract numbers EXACTLY as written - DO NOT add extra zeros or decimal places
+   - If a number is "100", extract "100" NOT "100.00" or "10000"
+   - If a number is "100.50", extract "100.50" (preserve the decimal as written)
    - Negative values MUST include minus sign: "-500.00"
 
 4. VALUE FORMATTING:
    - Remove: $, Rs., commas, currency symbols
-   - Keep: numbers, decimal point, minus sign
-   - Examples: "$5,250.00" → "5250.00", "-$500.00" → "-500.00", "10%" → extract dollar amount if available
+   - Keep: numbers, decimal point (only if present in source), minus sign
+   - Extract numbers EXACTLY as they appear - do not modify or add zeros
+   - Examples: "$5,250.00" → "5250.00", "$100" → "100" (not "100.00"), "-$500.00" → "-500.00", "10%" → extract dollar amount if available
 
 5. TERM VARIATIONS TO RECOGNIZE:
    - "Subtotal", "Sub Total", "Sub-total", "Sub total"
@@ -367,10 +370,10 @@ CRITICAL: You MUST extract "Subtotal" and "Discount" if they are visible in the 
 Return a JSON object with a "results" key containing an array with this EXACT structure:
 {
   "results": [
-    {"page": 1, "term": "Subtotal", "value": "5250.00", "evidence": "Subtotal: $5,250.00 written clearly in bottom section", "confidence": 98},
-    {"page": 1, "term": "Discount", "value": "-500.00", "evidence": "Discount: 10.00% -$500.00 shown in summary section", "confidence": 97},
-    {"page": 1, "term": "Tax", "value": "225.00", "evidence": "Tax: 5.00% $225.00 written next to Tax label", "confidence": 96},
-    {"page": 1, "term": "Total", "value": "4725.00", "evidence": "Total: $4,725.00 shown at bottom", "confidence": 98}
+    {"page": 1, "term": "Subtotal", "value": "5250", "evidence": "Subtotal: $5,250 written clearly in bottom section", "confidence": 98},
+    {"page": 1, "term": "Discount", "value": "-500", "evidence": "Discount: 10% -$500 shown in summary section", "confidence": 97},
+    {"page": 1, "term": "Tax", "value": "225", "evidence": "Tax: 5% $225 written next to Tax label", "confidence": 96},
+    {"page": 1, "term": "Total", "value": "4725", "evidence": "Total: $4,725 shown at bottom", "confidence": 98}
   ]
 }
 
