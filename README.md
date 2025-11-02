@@ -6,7 +6,7 @@ An AI-powered financial document processor that extracts, normalizes, and analyz
 
 Finance Concept Translator uses advanced AI to extract financial terms from any PDF format, normalizes them using intelligent synonym mapping, and provides interactive Q&A capabilities for data exploration. Built for hackathon projects requiring accurate financial data extraction from varied document formats.
 
-![Landing Page](/landingpage.png)
+![Landing Page](./public/landingpage.png)
 
 ## Key Features
 
@@ -95,7 +95,7 @@ npm run dev
 3. Multiple files can be uploaded simultaneously
 4. Processing begins automatically
 
-![Dashboard](/dashboard.png)
+![Dashboard](./public/dashboard.png)
 
 ### Viewing Results
 1. Results appear in real-time as processing completes
@@ -103,9 +103,9 @@ npm run dev
 3. Click any row to view detailed evidence with source snippets
 4. Confidence scores indicate extraction accuracy
 
-![Results Table](/results.png)
+![Results Table](./public/results.png)
 
-![Evidence Drawer](/evidence.png)
+![Evidence Drawer](./public/evidence.png)
 
 ### Managing Synonyms
 1. Access the Synonyms Panel on the dashboard
@@ -113,7 +113,7 @@ npm run dev
 3. Edit existing mappings: Update normalization rules
 4. Changes apply instantly to future processing
 
-![Synonyms Panel](/synonyms.png)
+![Synonyms Panel](./public/synonyms.png)
 
 ### Interactive Q&A
 1. Open the chat interface from the dashboard
@@ -123,7 +123,7 @@ npm run dev
    - "What's the discount on page 2?"
 3. Get instant answers based on your extracted data
 
-![Chat Interface](/chat.png)
+![Chat Interface](./public/chat.png)
 
 ### Exporting Data
 1. Click the "Export CSV" button when results are ready
