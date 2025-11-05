@@ -16,6 +16,7 @@ import {
   LoadingSpinner,
   ConfidenceBadge,
   FileIcon,
+  InfoCard,
 } from '@/components/common';
 
 interface ResultsTableProps {
@@ -60,25 +61,17 @@ export default function ResultsTable({ jobId, onRowClick }: ResultsTableProps) {
   );
 
   return (
-    <div className="bg-white rounded-xl border border-zinc-200 overflow-hidden">
-      {/* Header */}
-      <div className="px-6 py-4 border-b border-zinc-200">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <h2 className="text-sm font-semibold text-zinc-900">Normalized Results</h2>
-            <p className="text-xs text-zinc-500 mt-1">
-              {filteredData.length} records • Click any row to view evidence
-            </p>
-          </div>
-          <SearchInput
-            placeholder="Search records..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-      </div>
-
-      {/* Table */}
+    <InfoCard
+      title="Normalized Results"
+      subtitle={`${filteredData.length} records • Click any row to view evidence`}
+      actions={
+        <SearchInput
+          placeholder="Search records..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      }
+    >
       <Table>
         <TableHeader>
           <TableRow>
@@ -162,7 +155,6 @@ export default function ResultsTable({ jobId, onRowClick }: ResultsTableProps) {
         </TableBody>
       </Table>
 
-      {/* Footer */}
       {filteredData.length > 0 && (
         <div className="px-6 py-4 border-t border-zinc-200 flex items-center justify-between">
           <p className="text-xs text-zinc-500">
@@ -178,6 +170,6 @@ export default function ResultsTable({ jobId, onRowClick }: ResultsTableProps) {
           </div>
         </div>
       )}
-    </div>
+    </InfoCard>
   );
 }

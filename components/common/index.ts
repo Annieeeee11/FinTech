@@ -7,4 +7,14 @@ export * from './SearchInput';
 export * from './FileIcon';
 export * from './FormInput';
 export * from './IconButton';
+export * from './InfoCard';
+export * from './InfoField';
+export * from './Drawer';
+export * from './StatusIcon';
+export * from './StatsCard';
+export * from './ChatMessage';
+export * from './InvoiceTypeTab';
+export * from './FileListItem';
+export * from './SynonymForm';
+export * from './SynonymItem';
 
