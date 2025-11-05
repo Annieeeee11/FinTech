@@ -2,6 +2,7 @@
 
 
 PROJECT DEVS => Khushi & Anaya
+(Sorry i forgot to add darkmode please dont hate me for that --------- ps: anaya)
 
 
 An AI-powered financial document processor that extracts, normalizes, and analyzes financial data from PDF invoices and receipts. Transform complex financial documents into clean, consistent data with intelligent concept mapping and real-time processing.
