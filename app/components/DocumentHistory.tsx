@@ -5,7 +5,11 @@ import { FileText, Calendar } from 'lucide-react';
 import { getDocumentHistory } from '@/lib/api';
 import { DocumentHistoryItem } from '@/lib/types';
 import { formatDate, formatFileSize, pluralize } from '@/lib/utils';
-import { EmptyState, LoadingSpinner, StatusBadge, FileIcon, InfoCard } from '@/components/common';
+import { EmptyState } from '@/components/common/EmptyState';
+import { LoadingSpinner } from '@/components/common/LoadingSpinner';
+import { StatusBadge } from '@/components/common/StatusBadge';
+import { FileIcon } from '@/components/common/FileIcon';
+import { InfoCard } from '@/components/common/InfoCard';
 
 interface DocumentHistoryProps {
   onDocumentSelect?: (jobId: string) => void;

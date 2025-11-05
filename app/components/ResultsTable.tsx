@@ -4,21 +4,14 @@ import { useState, useEffect } from 'react';
 import { ExternalLink, FileText } from 'lucide-react';
 import { getResults } from '@/lib/api';
 import { ResultRow } from '@/lib/types';
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-  SearchInput,
-  EmptyState,
-  LoadingSpinner,
-  ConfidenceBadge,
-  FileIcon,
-  InfoCard,
-  Pagination,
-} from '@/components/common';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/common/Table';
+import { SearchInput } from '@/components/common/SearchInput';
+import { EmptyState } from '@/components/common/EmptyState';
+import { LoadingSpinner } from '@/components/common/LoadingSpinner';
+import { ConfidenceBadge } from '@/components/common/ConfidenceBadge';
+import { FileIcon } from '@/components/common/FileIcon';
+import { InfoCard } from '@/components/common/InfoCard';
+import { Pagination } from '@/components/common/Pagination';
 
 interface ResultsTableProps {
   jobId: string | null;

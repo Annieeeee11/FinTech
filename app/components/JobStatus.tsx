@@ -2,7 +2,9 @@
 
 import React from 'react';
 import { getStatusConfig } from '@/lib/utils';
-import { InfoCard, StatusIcon, StatsCard } from '@/components/common';
+import { InfoCard } from '@/components/common/InfoCard';
+import { StatusIcon } from '@/components/common/StatusIcon';
+import { StatsCard } from '@/components/common/StatsCard';
 
 interface JobStatusProps {
   status: 'idle' | 'processing' | 'completed' | 'error';

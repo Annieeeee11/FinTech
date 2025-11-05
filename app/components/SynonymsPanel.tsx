@@ -5,7 +5,10 @@ import { Plus } from 'lucide-react';
 import { toast } from 'sonner';
 import { getSynonyms, createSynonym, updateSynonym, deleteSynonym } from '@/lib/api';
 import { Synonym } from '@/lib/types';
-import { LoadingSpinner, InfoCard, SynonymForm, SynonymItem } from '@/components/common';
+import { LoadingSpinner } from '@/components/common/LoadingSpinner';
+import { InfoCard } from '@/components/common/InfoCard';
+import { SynonymForm } from '@/components/common/SynonymForm';
+import { SynonymItem } from '@/components/common/SynonymItem';
 
 interface SynonymsPanelProps {
   onSynonymChange?: () => void;

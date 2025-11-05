@@ -5,7 +5,9 @@ import { MessageSquare, User, Bot, Calendar } from 'lucide-react';
 import { getChatHistory } from '@/lib/api';
 import { ChatHistoryItem } from '@/lib/types';
 import { formatDateTime } from '@/lib/utils';
-import { EmptyState, LoadingSpinner, InfoCard } from '@/components/common';
+import { EmptyState } from '@/components/common/EmptyState';
+import { LoadingSpinner } from '@/components/common/LoadingSpinner';
+import { InfoCard } from '@/components/common/InfoCard';
 
 interface ChatHistoryProps {
   jobId?: string | null;

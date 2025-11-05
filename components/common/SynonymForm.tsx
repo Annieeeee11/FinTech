@@ -1,5 +1,6 @@
 import { Check, X } from 'lucide-react';
-import { LoadingSpinner, FormInput } from '@/components/common';
+import { LoadingSpinner } from '@/components/common/LoadingSpinner';
+import { FormInput } from '@/components/common/FormInput';
 
 interface SynonymFormProps {
   term: string;

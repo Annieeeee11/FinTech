@@ -2,15 +2,10 @@
 
 import { FileText, MapPin } from 'lucide-react';
 import { Evidence } from '@/lib/types';
-import { 
-  ConfidenceBadge, 
-  InfoField, 
-  InfoCard,
-  Drawer, 
-  DrawerHeader, 
-  DrawerContent, 
-  DrawerFooter 
-} from '@/components/common';
+import { ConfidenceBadge } from '@/components/common/ConfidenceBadge';
+import { InfoField } from '@/components/common/InfoField';
+import { InfoCard } from '@/components/common/InfoCard';
+import { Drawer, DrawerHeader, DrawerContent, DrawerFooter } from '@/components/common/Drawer';
 
 interface EvidenceDrawerProps {
   evidence: Evidence;

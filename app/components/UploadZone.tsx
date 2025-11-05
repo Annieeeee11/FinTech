@@ -7,7 +7,9 @@ import { uploadFiles, uploadHandwrittenFiles } from '@/lib/api';
 import { InvoiceType } from '@/lib/types';
 import { validateFileType, pluralize } from '@/lib/utils';
 import { FILE_TYPES } from '@/lib/constants';
-import { InfoCard, InvoiceTypeTab, FileListItem } from '@/components/common';
+import { InfoCard } from '@/components/common/InfoCard';
+import { InvoiceTypeTab } from '@/components/common/InvoiceTypeTab';
+import { FileListItem } from '@/components/common/FileListItem';
 
 interface UploadZoneProps {
   onJobCreated: (jobId: string) => void;

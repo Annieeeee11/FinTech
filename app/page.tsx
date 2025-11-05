@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LandingNavbar } from '@/components/Navbar';
-import { Button, Modal } from '@/components/ui';
+import { Button } from '@/components/ui/Button';
+import { Modal } from '@/components/ui/Modal';
 import { AuthForm } from '@/components/auth/AuthForm';
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
 import { navigateWithToken, setupNavigationGuard } from '@/lib/navigation';

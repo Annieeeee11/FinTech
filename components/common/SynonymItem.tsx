@@ -1,6 +1,6 @@
 import { Edit2, Trash2 } from 'lucide-react';
 import { Synonym } from '@/lib/types';
-import { IconButton } from '@/components/common';
+import { IconButton } from '@/components/common/IconButton';
 
 interface SynonymItemProps {
   synonym: Synonym;

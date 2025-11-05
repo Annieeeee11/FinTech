@@ -4,7 +4,8 @@ import { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, Loader2, X } from 'lucide-react';
 import { Message } from '@/lib/types';
 import { MAX_CONVERSATION_HISTORY, WELCOME_MESSAGE } from '@/lib/constants';
-import { EmptyState, ChatMessage } from '@/components/common';
+import { EmptyState } from '@/components/common/EmptyState';
+import { ChatMessage } from '@/components/common/ChatMessage';
 
 interface ChatInterfaceProps {
   jobId: string | null;
