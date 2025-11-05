@@ -9,6 +9,7 @@ import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { InfoCard } from '@/components/common/InfoCard';
 import { SynonymForm } from '@/components/common/SynonymForm';
 import { SynonymItem } from '@/components/common/SynonymItem';
+import { Button } from '@/components/ui/Button';
 
 interface SynonymsPanelProps {
   onSynonymChange?: () => void;
@@ -159,13 +160,15 @@ export default function SynonymsPanel({ onSynonymChange }: SynonymsPanelProps) {
       title="Synonym Mappings"
       subtitle={`${synonyms.length} mappings • Changes apply instantly`}
       actions={
-        <button
+        <Button
           onClick={() => setIsAdding(true)}
-          className="px-3 py-1.5 bg-zinc-900 text-white text-xs font-medium rounded-lg hover:bg-zinc-800 transition-colors flex items-center gap-1.5"
+          variant="primary"
+          size="xs"
+          className="rounded-lg flex items-center gap-1.5"
         >
           <Plus className="w-3.5 h-3.5" />
           Add Mapping
-        </button>
+        </Button>
       }
     >
       <div className="p-6">

@@ -10,6 +10,7 @@ import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { StatusBadge } from '@/components/common/StatusBadge';
 import { FileIcon } from '@/components/common/FileIcon';
 import { InfoCard } from '@/components/common/InfoCard';
+import { Button } from '@/components/ui/Button';
 
 interface DocumentHistoryProps {
   onDocumentSelect?: (jobId: string) => void;
@@ -47,12 +48,13 @@ export default function DocumentHistory({ onDocumentSelect }: DocumentHistoryPro
       subtitle="Recently processed documents"
       actions={
         documents.length > 3 && (
-          <button
+          <Button
             onClick={() => setShowAll(!showAll)}
-            className="text-xs text-zinc-600 hover:text-zinc-900 font-medium"
+            variant="text"
+            size="xs"
           >
             {showAll ? 'Show Less' : `Show All (${documents.length})`}
-          </button>
+          </Button>
         )
       }
       contentClassName={`overflow-y-auto ${showAll ? 'max-h-[400px]' : ''}`}

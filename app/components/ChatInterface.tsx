@@ -6,6 +6,7 @@ import { Message } from '@/lib/types';
 import { MAX_CONVERSATION_HISTORY, WELCOME_MESSAGE } from '@/lib/constants';
 import { EmptyState } from '@/components/common/EmptyState';
 import { ChatMessage } from '@/components/common/ChatMessage';
+import { Button } from '@/components/ui/Button';
 
 interface ChatInterfaceProps {
   jobId: string | null;
@@ -108,12 +109,13 @@ export default function ChatInterface({ jobId, isOpen, onClose }: ChatInterfaceP
             {jobId && <p className="text-xs text-zinc-500">Job: {jobId.substring(0, 8)}...</p>}
           </div>
         </div>
-        <button
+        <Button
           onClick={onClose}
-          className="p-1 hover:bg-zinc-200 rounded-lg transition-colors"
+          variant="icon"
+          className="p-2"
         >
           <X className="w-4 h-4 text-zinc-600" />
-        </button>
+        </Button>
       </div>
 
 
@@ -153,13 +155,15 @@ export default function ChatInterface({ jobId, isOpen, onClose }: ChatInterfaceP
             disabled={!jobId || isLoading}
             className="flex-1 px-3 py-2 text-sm border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent disabled:bg-zinc-100 disabled:cursor-not-allowed"
           />
-          <button
+          <Button
             type="submit"
             disabled={!jobId || !input.trim() || isLoading}
-            className="px-4 py-2 bg-zinc-900 text-white rounded-lg hover:bg-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            variant="primary"
+            size="sm"
+            className="rounded-lg flex items-center gap-2"
           >
             <Send className="w-4 h-4" />
-          </button>
+          </Button>
         </div>
       </form>
     </div>

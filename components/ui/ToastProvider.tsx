@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { X } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 
 type ToastType = 'success' | 'error' | 'info';
 
@@ -54,13 +55,14 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             `}
           >
             <p className="flex-1 text-sm font-medium">{toast.message}</p>
-            <button
+            <Button
               onClick={() => removeToast(toast.id)}
-              className="hover:opacity-70 transition-opacity"
+              variant="icon"
+              className="hover:opacity-70 p-0"
               aria-label="Close toast"
             >
               <X className="w-4 h-4" />
-            </button>
+            </Button>
           </div>
         ))}
       </div>

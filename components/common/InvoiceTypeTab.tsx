@@ -1,5 +1,6 @@
 import React from 'react';
 import { InvoiceType } from '@/lib/types';
+import { Button } from '@/components/ui/Button';
 
 interface InvoiceTypeTabProps {
   type: InvoiceType;
@@ -11,17 +12,18 @@ interface InvoiceTypeTabProps {
 
 export function InvoiceTypeTab({ type, label, icon, active, onClick }: InvoiceTypeTabProps) {
   return (
-    <button
+    <Button
       onClick={onClick}
-      className={`px-4 py-2 text-xs font-medium rounded-lg transition-colors flex items-center gap-2 ${
+      size="xs"
+      className={`rounded-lg flex items-center gap-2 ${
         active
-          ? 'bg-zinc-900 text-white'
+          ? 'bg-zinc-900 text-white hover:bg-zinc-800'
           : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
       }`}
     >
       {icon}
       {label}
-    </button>
+    </Button>
   );
 }
 

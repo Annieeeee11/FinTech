@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "motion/react";
-import React from "react";
 
 export const LoaderOne = () => {
   const transition = (x: number) => {
@@ -215,7 +214,6 @@ export const LoaderFive = ({ text }: { text: string }) => {
   );
 };
 
-// Default Loader component with size support
 export const Loader = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
   const sizeClasses = {
     sm: "h-2 w-2",

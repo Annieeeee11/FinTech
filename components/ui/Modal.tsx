@@ -2,6 +2,7 @@
 
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
+import { Button } from '@/components/ui/Button';
 
 interface ModalProps {
   isOpen: boolean;
@@ -56,13 +57,14 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
           {title && (
             <h3 className="text-lg font-semibold text-zinc-900">{title}</h3>
           )}
-          <button
+          <Button
             onClick={onClose}
-            className="p-2 hover:bg-zinc-100 rounded-lg transition-colors ml-auto"
+            variant="icon"
+            className="p-2 hover:bg-zinc-100 ml-auto"
             aria-label="Close"
           >
             <X className="w-5 h-5 text-zinc-600" />
-          </button>
+          </Button>
         </div>
         
         {/* Content */}

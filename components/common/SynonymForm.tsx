@@ -1,6 +1,7 @@
 import { Check, X } from 'lucide-react';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { FormInput } from '@/components/common/FormInput';
+import { Button } from '@/components/ui/Button';
 
 interface SynonymFormProps {
   term: string;
@@ -38,21 +39,25 @@ export function SynonymForm({
         />
       </div>
       <div className="flex items-center gap-2">
-        <button
+        <Button
           onClick={onSave}
           disabled={isSaving}
-          className="px-3 py-1.5 bg-zinc-900 text-white text-xs font-medium rounded hover:bg-zinc-800 transition-colors flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+          variant="primary"
+          size="xs"
+          className="rounded flex items-center gap-1.5"
         >
           {isSaving ? <LoadingSpinner size="sm" /> : <Check className="w-3.5 h-3.5" />}
           Save
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={onCancel}
-          className="px-3 py-1.5 bg-white text-zinc-700 text-xs font-medium border border-zinc-300 rounded hover:bg-zinc-50 transition-colors flex items-center gap-1.5"
+          variant="ghost"
+          size="xs"
+          className="rounded flex items-center gap-1.5"
         >
           <X className="w-3.5 h-3.5" />
           Cancel
-        </button>
+        </Button>
       </div>
     </div>
   );

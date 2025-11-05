@@ -15,6 +15,7 @@ import EvidenceDrawer from '../components/EvidenceDrawer';
 import ChatInterface from '../components/ChatInterface';
 import DocumentHistory from '../components/DocumentHistory';
 import ChatHistory from '../components/ChatHistory';
+import { Button } from '@/components/ui/Button';
 
 export default function Dashboard() {
   const [selectedEvidence, setSelectedEvidence] = useState<any>(null);
@@ -182,35 +183,41 @@ export default function Dashboard() {
           </div>
           <div className="flex items-center gap-3">
             {currentJobId && jobStatus === 'completed' && (
-              <button 
+              <Button 
                 onClick={handleNewUpload}
-                className="px-4 py-2 text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition-colors"
+                variant="ghost"
+                size="sm"
+                className="text-zinc-700 hover:text-zinc-900 rounded-lg shadow-none"
               >
                 New Upload
-              </button>
+              </Button>
             )}
-            <button 
+            <Button 
               onClick={handleExportCSV}
               disabled={!currentJobId || isExporting}
-              className="px-4 py-2 text-sm font-medium text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              variant="ghost"
+              size="sm"
+              className="text-zinc-700 hover:text-zinc-900 rounded-lg flex items-center gap-2 shadow-none"
             >
               <Download className="w-4 h-4" />
               {isExporting ? 'Exporting...' : 'Export CSV'}
-            </button>
-            {/* <button 
+            </Button>
+            {/* <Button 
               onClick={() => setIsSettingsModalOpen(true)}
-              className="p-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition-colors"
+              variant="icon"
+              className="p-2 text-zinc-600 hover:text-zinc-900"
             >
               <Settings className="w-4 h-4" />
-            </button> */}
-            <button
+            </Button> */}
+            <Button
               onClick={handleLogout}
               disabled={isLoggingOut}
-              className="p-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 rounded-lg transition-colors"
+              variant="icon"
+              className="p-2 text-zinc-600 hover:text-zinc-900"
               title="Logout"
             >
               <LogOut className="w-4 h-4" />
-            </button>
+            </Button>
           </div>
         </div>
       </header>
@@ -277,13 +284,14 @@ export default function Dashboard() {
       )}
 
       {!isChatOpen && (
-        <button
+        <Button
           onClick={() => setIsChatOpen(true)}
-          className="fixed bottom-6 right-6 w-14 h-14 bg-zinc-900 text-white rounded-full shadow-lg hover:bg-zinc-800 transition-all hover:scale-110 flex items-center justify-center z-40"
+          variant="primary"
+          className="fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg hover:scale-110 flex items-center justify-center z-40 p-0"
           title="Ask Questions"
         >
           <MessageSquare className="w-6 h-6" />
-        </button>
+        </Button>
       )}
 
       <ChatInterface

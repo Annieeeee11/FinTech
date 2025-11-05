@@ -1,10 +1,6 @@
 import { ReactNode, TdHTMLAttributes, ThHTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
-// ==========================================
-// TABLE CONTAINER
-// ==========================================
-
 interface TableProps {
   children: ReactNode;
   className?: string;
@@ -20,10 +16,6 @@ export function Table({ children, className }: TableProps) {
   );
 }
 
-// ==========================================
-// TABLE HEADER
-// ==========================================
-
 interface TableHeaderProps {
   children: ReactNode;
   className?: string;
@@ -36,10 +28,6 @@ export function TableHeader({ children, className }: TableHeaderProps) {
     </thead>
   );
 }
-
-// ==========================================
-// TABLE BODY
-// ==========================================
 
 interface TableBodyProps {
   children: ReactNode;
@@ -54,9 +42,6 @@ export function TableBody({ children, className }: TableBodyProps) {
   );
 }
 
-// ==========================================
-// TABLE ROW
-// ==========================================
 
 interface TableRowProps {
   children: ReactNode;
@@ -78,9 +63,6 @@ export function TableRow({ children, onClick, className }: TableRowProps) {
   );
 }
 
-// ==========================================
-// TABLE HEAD CELL
-// ==========================================
 
 interface TableHeadProps extends ThHTMLAttributes<HTMLTableCellElement> {
   children: ReactNode;
@@ -100,10 +82,6 @@ export function TableHead({ children, className, ...props }: TableHeadProps) {
     </th>
   );
 }
-
-// ==========================================
-// TABLE CELL
-// ==========================================
 
 interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {
   children: ReactNode;

@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { X, LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/Button';
 
 interface DrawerProps {
   isOpen: boolean;
@@ -61,12 +62,13 @@ export function DrawerHeader({
           )}
         </div>
       </div>
-      <button
+      <Button
         onClick={onClose}
-        className="p-2 hover:bg-zinc-200 rounded-lg transition-colors"
+        variant="icon"
+        className="p-2"
       >
         <X className="w-5 h-5 text-zinc-600" />
-      </button>
+      </Button>
     </div>
   );
 }
@@ -99,20 +101,24 @@ export function DrawerFooter({ onClose, actions, className }: DrawerFooterProps)
       {actions ? (
         <>
           <div>{actions}</div>
-          <button
+          <Button
             onClick={onClose}
-            className="px-4 py-2 bg-zinc-900 text-white text-sm font-medium rounded-lg hover:bg-zinc-800 transition-colors"
+            variant="primary"
+            size="sm"
+            className="rounded-lg"
           >
             Close
-          </button>
+          </Button>
         </>
       ) : (
-        <button
+        <Button
           onClick={onClose}
-          className="ml-auto px-4 py-2 bg-zinc-900 text-white text-sm font-medium rounded-lg hover:bg-zinc-800 transition-colors"
+          variant="primary"
+          size="sm"
+          className="ml-auto rounded-lg"
         >
           Close
-        </button>
+        </Button>
       )}
     </div>
   );

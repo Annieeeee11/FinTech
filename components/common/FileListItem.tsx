@@ -1,5 +1,6 @@
 import { File, X } from 'lucide-react';
 import { formatFileSize } from '@/lib/utils';
+import { Button } from '@/components/ui/Button';
 
 interface FileListItemProps {
   file: File;
@@ -23,12 +24,13 @@ export function FileListItem({ file, index, onRemove }: FileListItemProps) {
           </p>
         </div>
       </div>
-      <button
+      <Button
         onClick={() => onRemove(index)}
-        className="p-1 hover:bg-zinc-200 rounded transition-colors shrink-0"
+        variant="icon"
+        className="p-1 shrink-0"
       >
         <X className="w-4 h-4 text-zinc-600" />
-      </button>
+      </Button>
     </div>
   );
 }

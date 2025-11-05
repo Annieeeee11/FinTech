@@ -10,6 +10,7 @@ import { FILE_TYPES } from '@/lib/constants';
 import { InfoCard } from '@/components/common/InfoCard';
 import { InvoiceTypeTab } from '@/components/common/InvoiceTypeTab';
 import { FileListItem } from '@/components/common/FileListItem';
+import { Button } from '@/components/ui/Button';
 
 interface UploadZoneProps {
   onJobCreated: (jobId: string) => void;
@@ -209,10 +210,12 @@ export default function UploadZone({ onJobCreated }: UploadZoneProps) {
         )}
 
         {uploadedFiles.length > 0 && (
-          <button 
+          <Button 
             onClick={handleProcess}
             disabled={isProcessing}
-            className="mt-4 w-full px-4 py-2.5 bg-zinc-900 text-white text-sm font-medium rounded-lg hover:bg-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            variant="primary"
+            size="sm"
+            className="mt-4 w-full rounded-lg flex items-center justify-center gap-2"
           >
             {isProcessing ? (
               <>
@@ -222,7 +225,7 @@ export default function UploadZone({ onJobCreated }: UploadZoneProps) {
             ) : (
               <>Process {uploadedFiles.length} {pluralize(uploadedFiles.length, 'Document')}</>
             )}
-          </button>
+          </Button>
         )}
       </div>
     </InfoCard>

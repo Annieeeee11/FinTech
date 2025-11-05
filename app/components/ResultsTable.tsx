@@ -12,6 +12,7 @@ import { ConfidenceBadge } from '@/components/common/ConfidenceBadge';
 import { FileIcon } from '@/components/common/FileIcon';
 import { InfoCard } from '@/components/common/InfoCard';
 import { Pagination } from '@/components/common/Pagination';
+import { Button } from '@/components/ui/Button';
 
 interface ResultsTableProps {
   jobId: string | null;
@@ -139,9 +140,9 @@ export default function ResultsTable({ jobId, onRowClick }: ResultsTableProps) {
                   <ConfidenceBadge confidence={row.confidence} />
                 </TableCell>
                 <TableCell align="center">
-                  <button className="p-1.5 hover:bg-zinc-200 rounded transition-colors">
+                  <Button variant="icon" className="p-1.5">
                     <ExternalLink className="w-4 h-4 text-zinc-600" />
-                  </button>
+                  </Button>
                 </TableCell>
               </TableRow>
             ))

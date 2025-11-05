@@ -8,6 +8,7 @@ import { formatDateTime } from '@/lib/utils';
 import { EmptyState } from '@/components/common/EmptyState';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { InfoCard } from '@/components/common/InfoCard';
+import { Button } from '@/components/ui/Button';
 
 interface ChatHistoryProps {
   jobId?: string | null;
@@ -52,12 +53,13 @@ export default function ChatHistory({ jobId, onHistorySelect }: ChatHistoryProps
       subtitle={jobId ? 'Conversation history for this job' : 'Select a job to view chat history'}
       actions={
         history.length > 3 && (
-          <button
+          <Button
             onClick={() => setShowAll(!showAll)}
-            className="text-xs text-zinc-600 hover:text-zinc-900 font-medium"
+            variant="text"
+            size="xs"
           >
             {showAll ? 'Show Less' : `Show All (${history.length})`}
-          </button>
+          </Button>
         )
       }
       contentClassName={`overflow-y-auto ${showAll ? 'max-h-[400px]' : ''}`}

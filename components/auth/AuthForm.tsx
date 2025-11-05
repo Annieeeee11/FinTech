@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { AuthFormData, SignUpFormData } from '@/lib/types';
+import { Button } from '@/components/ui/Button';
 
 interface AuthFormProps {
   mode: 'login' | 'signup';
@@ -147,13 +148,14 @@ export function AuthForm({ mode, onSuccess }: AuthFormProps) {
           </div>
         )}
         
-        <button
+        <Button
           type="submit"
           disabled={loading}
-          className="w-full px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          variant="primary"
+          className="w-full rounded-lg bg-black hover:bg-black/90 focus:ring-black"
         >
           {loading ? 'Loading...' : mode === 'login' ? 'Sign In' : 'Sign Up'}
-        </button>
+        </Button>
       </form>
       
       <div className="mt-6 text-center">
@@ -161,33 +163,35 @@ export function AuthForm({ mode, onSuccess }: AuthFormProps) {
           {mode === 'login' ? (
             <>
               Don't have an account?{' '}
-              <button
+              <Button
                 type="button"
+                variant="text"
                 onClick={() => {
                   // This will be handled by the parent component
                   if (typeof window !== 'undefined') {
                     window.dispatchEvent(new CustomEvent('switchToSignup'));
                   }
                 }}
-                className="text-black hover:underline font-medium"
+                className="text-black hover:underline p-0 h-auto"
               >
                 Sign up
-              </button>
+              </Button>
             </>
           ) : (
             <>
               Already have an account?{' '}
-              <button
+              <Button
                 type="button"
+                variant="text"
                 onClick={() => {
                   if (typeof window !== 'undefined') {
                     window.dispatchEvent(new CustomEvent('switchToLogin'));
                   }
                 }}
-                className="text-black hover:underline font-medium"
+                className="text-black hover:underline p-0 h-auto"
               >
                 Sign in
-              </button>
+              </Button>
             </>
           )}
         </p>
