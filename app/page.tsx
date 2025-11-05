@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { AuthForm } from '@/components/auth/AuthForm';
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
-import { navigateWithToken, setupNavigationGuard } from '@/lib/navigation';
+import { setupNavigationGuard } from '@/lib/navigation';
 import { FileText, Zap, Shield, BarChart3, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export default function LandingPage() {
